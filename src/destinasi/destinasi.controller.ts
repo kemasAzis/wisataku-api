@@ -1,42 +1,42 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Delete, Param, Body, ParseIntPipe, HttpCode } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { DestinasiService } from './destinasi.service';
 import { CreateDestinasiDto } from './dto/create-destinasi.dto';
-import { UpdateDestinasiDto } from './dto/update-destinasi.dto';
+import { UpdateDestinasiDto } from './dto/update-destinasi.dto'; // Pastikan DTO ini sudah ada
 
 @ApiTags('Destinasi')
 @Controller('destinasi')
 export class DestinasiController {
-  
+  constructor(private readonly destinasiService: DestinasiService) {}
+
   @Get()
   @ApiOperation({ summary: 'Menampilkan daftar destinasi wisata' })
-  @ApiResponse({ status: 200, description: 'Daftar destinasi berhasil diambil' })
   findAll() {
-    return 'Daftar destinasi wisata akan tampil di sini';
+    return this.destinasiService.findAll();
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Menampilkan detail destinasi' })
-  findOne(@Param('id') id: string) {
-    return `Detail destinasi ID: ${id}`;
+  @ApiOperation({ summary: 'Menampilkan detail destinasi berdasarkan ID' })
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.destinasiService.findOne(id);
   }
 
   @Post()
   @ApiOperation({ summary: 'Menambahkan destinasi baru (khusus admin)' })
-  @ApiResponse({ status: 201, description: 'Destinasi berhasil dibuat' })
-  @ApiResponse({ status: 400, description: 'Data tidak valid' })
   create(@Body() dto: CreateDestinasiDto) {
-    return dto;
+    return this.destinasiService.create(dto);
   }
 
   @Patch(':id')
-  @ApiOperation({ summary: 'Mengubah sebagian data destinasi (khusus admin)' })
-  update(@Param('id') id: string, @Body() dto: UpdateDestinasiDto) {
-    return { id, ...dto };
+  @ApiOperation({ summary: 'Mengubah data destinasi berdasarkan ID' })
+  update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateDestinasiDto) {
+    return this.destinasiService.update(id, dto);
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Menghapus destinasi (khusus admin)' })
-  remove(@Param('id') id: string) {
-    return `Destinasi ID: ${id} berhasil dihapus`;
+  @HttpCode(200)
+  @ApiOperation({ summary: 'Menghapus destinasi berdasarkan ID' })
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.destinasiService.remove(id);
   }
 }

@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNumber, IsNotEmpty, Min } from 'class-validator';
+
 export class CreateDestinasiDto {
   @ApiProperty({ example: 'Pantai Kuta Mandalika' })
   @IsString()
