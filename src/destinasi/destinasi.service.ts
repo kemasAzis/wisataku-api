@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateDestinasiDto } from './dto/create-destinasi.dto';
 import { UpdateDestinasiDto } from './dto/update-destinasi.dto';
+import { TambahUlasanInput } from './dto/tambah-ulasan.input';
 import { PrismaService } from '../prisma.service';
 
 @Injectable()
@@ -32,6 +33,19 @@ export class DestinasiService {
     }
 
     return destinasi;
+  }
+
+  async tambahUlasan(input: TambahUlasanInput) {
+    // Pastikan destinasi yang direview benar-benar ada sebelum menyimpan
+    await this.findOne(input.destinasiId);
+
+    return this.prisma.ulasan.create({
+      data: {
+        destinasiId: input.destinasiId,
+        rating: input.rating,
+        komentar: input.komentar,
+      },
+    });
   }
 
   async update(id: number, updateDestinasiDto: UpdateDestinasiDto) {

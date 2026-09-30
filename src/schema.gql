@@ -9,17 +9,41 @@ scalar DateTime
 
 type DestinasiModel {
   createdAt: DateTime!
+  fasilitas: [FasilitasModel!]!
   hargaTiket: Int!
   id: Int!
   kategori: String!
   nama: String!
+  ratingRata: Float!
+  ulasan: [UlasanModel!]!
   updatedAt: DateTime!
+}
+
+type FasilitasModel {
+  id: Int!
+  namaFasilitas: String!
 }
 
 type Mutation {
   createDestinasi(hargaTiket: Int!, kategori: String!, nama: String!): DestinasiModel!
+  tambahUlasan(input: TambahUlasanInput!): UlasanModel!
 }
 
 type Query {
+  destinasi(id: Int!): DestinasiModel!
   destinasiList: [DestinasiModel!]!
+}
+
+input TambahUlasanInput {
+  destinasiId: Int!
+  komentar: String!
+  rating: Int!
+}
+
+type UlasanModel {
+  createdAt: DateTime!
+  id: Int!
+  komentar: String!
+  rating: Int!
+  updatedAt: DateTime!
 }

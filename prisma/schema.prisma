@@ -8,10 +8,35 @@ datasource db {
 }
 
 model Destinasi {
-  id         Int      @id @default(autoincrement())
+  id         Int         @id @default(autoincrement())
   nama       String
   kategori   String
   hargaTiket Int
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  ulasan    Ulasan[]
+  fasilitas Fasilitas[]
+}
+
+model Ulasan {
+  id          Int      @id @default(autoincrement())
+  destinasiId Int
+  rating      Int
+  komentar    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  destinasi   Destinasi @relation(fields: [destinasiId], references: [id], onDelete: Cascade)
+
+  @@index([destinasiId])
+}
+
+model Fasilitas {
+  id            Int      @id @default(autoincrement())
+  destinasiId   Int
+  namaFasilitas String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  destinasi     Destinasi @relation(fields: [destinasiId], references: [id], onDelete: Cascade)
+
+  @@index([destinasiId])
 }
