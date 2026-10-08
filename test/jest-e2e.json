@@ -4,6 +4,23 @@
   "testEnvironment": "node",
   "testRegex": ".e2e-spec.ts$",
   "transform": {
-    "^.+\\.(t|j)s$": "ts-jest"
-  }
+    "^.+\\.tsx?$": [
+      "ts-jest",
+      {
+        "tsconfig": {
+          "module": "CommonJS",
+          "esModuleInterop": true,
+          "allowSyntheticDefaultImports": true
+        }
+      }
+    ],
+    "^.+\\.js$": [
+      "babel-jest",
+      {
+        "presets": [["@babel/preset-env", { "targets": { "node": "current" } }]],
+        "plugins": ["./test/babel-plugin-transform-import-meta.cjs"]
+      }
+    ]
+  },
+  "transformIgnorePatterns": ["node_modules[\\\\/](?!@nestjs[\\\\/])"]
 }

@@ -13,6 +13,7 @@ async function bootstrap() {
     .setTitle('Wisataku API')
     .setDescription('API untuk platform informasi dan reservasi destinasi wisata')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
     
   const document = SwaggerModule.createDocument(app, config);
