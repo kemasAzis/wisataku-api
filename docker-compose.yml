@@ -1,0 +1,17 @@
+services:
+  db:
+    image: mariadb:11
+    container_name: mariadb-wisataku-tugas
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: wisataku_db
+      MYSQL_USER: wisataku_user
+      MYSQL_PASSWORD: wisataku_pass
+    volumes:
+      - wisataku_data:/var/lib/mysql
+
+volumes:
+  wisataku_data:

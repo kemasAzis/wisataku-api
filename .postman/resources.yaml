@@ -1,0 +1,8 @@
+# Use this workspace to collaborate
+workspace:
+  id: cacc5aed-1a6b-4238-8993-5cfcc03064cf
+
+localResources:
+  specs:
+    - ../openapi.json
+    - ../src/schema.gql
