@@ -1,0 +1,26 @@
+$kind: http-request
+url: http://127.0.0.1:3000/api/v1/laporan/REP-2026-001/status
+method: PATCH
+body:
+  type: formdata
+  content:
+    - type: text
+      key: status_baru
+      value: On Process
+      description: On Process
+      disabled: false
+    - type: text
+      key: nama_teknisi
+      value: Pak Tono
+      description: ""
+      disabled: false
+    - type: file
+      key: "foto_bukti "
+      src: []
+      description: ""
+      disabled: false
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_0g3k}}"
+order: 6000

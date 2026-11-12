@@ -1,0 +1,47 @@
+$kind: http-request
+url: http://127.0.0.1:3000/api/v1/laporan
+method: POST
+body:
+  type: formdata
+  content:
+    - type: text
+      key: judul
+      value: Proyektor mati di ruang 201
+      description: ""
+      disabled: false
+    - type: text
+      key: deskripsi
+      value: Proyektor tidak menyala
+      description: ""
+      disabled: false
+    - type: text
+      key: kategori
+      value: Elektronik
+      description: ""
+      disabled: false
+    - type: text
+      key: lokasi_gedung
+      value: Gedung A
+      description: ""
+      disabled: false
+    - type: text
+      key: latitude
+      value: "-6.900000"
+      description: ""
+      disabled: false
+    - type: text
+      key: longitude
+      value: "107.600000"
+      description: ""
+      disabled: false
+    - type: file
+      key: foto
+      src:
+        - /C:/Users/KEMAS/OneDrive/Pictures/tugas/gowes.jpg
+      description: ""
+      disabled: false
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_00pb}}"
+order: 3000

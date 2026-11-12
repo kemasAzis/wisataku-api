@@ -1,0 +1,17 @@
+$kind: http-request
+url: http://localhost:3000/penyewaan
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"pelangganId\": 1,\r
+
+    \  \"kendaraanId\": 1,\r
+
+    \  \"tanggal_sewa\": \"2026-11-08T10:00:00Z\",\r
+
+    \  \"total_biaya\": 340000\r
+
+    }"
+order: 2000

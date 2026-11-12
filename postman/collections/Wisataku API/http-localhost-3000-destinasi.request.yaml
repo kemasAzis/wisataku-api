@@ -1,0 +1,21 @@
+$kind: http-request
+name: http://localhost:3000/destinasi
+description: ""
+url: http://localhost:3000/destinasi
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"nama\": \"Gili Trawangan\",\r
+
+    \  \"kategori\": \"Pulau\",\r
+
+    \  \"hargaTiket\": 20000\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "\t{{json_web_token_05to}}"
+order: 2000

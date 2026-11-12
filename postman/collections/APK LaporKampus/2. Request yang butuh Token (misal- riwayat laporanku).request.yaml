@@ -1,0 +1,9 @@
+$kind: http-request
+name: "2. Request yang butuh Token (misal: riwayat laporanku)"
+url: http://127.0.0.1:3000/api/v1/laporan/riwayat
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_00pb}}"
+order: 2000

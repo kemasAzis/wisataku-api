@@ -1,4 +1,15 @@
 $kind: http-request
-url: ""
-method: GET
+url: http://localhost:3000/auth/login
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"email\": \"admin@wisataku.id\",\r
+
+    \  \"password\": \"admin123\"\r
+
+    }"
+auth:
+  type: bearer
 order: 1000
